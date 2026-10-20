@@ -12,7 +12,7 @@ los notebooks y los programas usados para resolver las tres preguntas de la guí
 | Integrante | Nombre completo |
 |---|---|
 | 1 | **Luis Alejandro Correa Arrieta** |
-| 2 | **[Nombre del integrante 2]** |
+| 2 | **Valeria Gómez Aguirre** |
 | 3 | **Samuel Romaña Acevedo** |
 
 Reemplacen los textos entre corchetes por los nombres definitivos del equipo.
