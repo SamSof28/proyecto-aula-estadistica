@@ -56,6 +56,26 @@ python -m pip install jupyter pandas numpy scipy matplotlib seaborn openpyxl
 
 ## Ejecución
 
+### Despliegue en Vercel
+
+Este proyecto es una aplicación Dash de Python, no un sitio HTML estático. Para
+desplegarlo correctamente:
+
+1. Importa este repositorio en Vercel y deja como **Root Directory** la raíz del
+   repositorio.
+2. No selecciones un framework de frontend. Vercel detectará la función Python
+   en `api/index.py` y las dependencias de `requirements.txt`.
+3. Usa Python 3.12 en **Settings → Functions → Runtime** (o la versión de
+   Python disponible en tu proyecto).
+4. Despliega nuevamente. La regla de `vercel.json` envía las rutas de Dash y
+   sus recursos (`_dash-layout`, `_dash-dependencies` y `_dash-component-suites`)
+   a la función Python.
+
+Si la pantalla sigue vacía, revisa **Deployments → Functions → Logs**. Un error
+`ModuleNotFoundError` indica una dependencia ausente en `requirements.txt`; un
+error `FileNotFoundError` indica que algún archivo de datos no fue incluido en
+el commit o que el Root Directory no apunta a la raíz del repositorio.
+
 ### Pregunta 1
 
 El notebook espera un archivo Excel llamado
