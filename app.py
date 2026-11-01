@@ -315,7 +315,7 @@ def q1_layout() -> html.Div:
             ),
             html.Div(
                 [
-                    html.H3("Analisis Final"),
+                    html.H3("Analisis final"),
                     html.P(
                         f"La Marca {BEST_BRAND} presenta la menor media de emisiones ({best['ppm_medio']:.1f} ppm) "
                         f"y el mayor cumplimiento de emisiones ({best['emision_ok']:.1f}%). "
@@ -438,7 +438,7 @@ def q3_layout() -> html.Div:
             ),
             html.Div(
                 [
-                    html.H3("Conclusión para la exposición"),
+                    html.H3("Analisis final"),
                     html.P(
                         f"En este entorno y con este experimento, Java tarda en promedio {python_mean / java_mean:.1f} veces menos "
                         f"que Python ({java_mean:.1f} ms frente a {python_mean:.1f} ms). La conclusión aplica a esta implementación, "
