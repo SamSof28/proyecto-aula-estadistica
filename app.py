@@ -90,6 +90,28 @@ def section_title(kicker: str, title: str, text: str) -> html.Div:
     )
 
 
+def presentation_box(description: str, solution: str) -> html.Div:
+    return html.Div(
+        [
+            html.Div(
+                [
+                    html.Div("¿Qué se analizó?", className="presentation-label"),
+                    html.P(description, className="presentation-text"),
+                ],
+                className="presentation-column",
+            ),
+            html.Div(
+                [
+                    html.Div("Solución planteada", className="presentation-label"),
+                    html.P(solution, className="presentation-text"),
+                ],
+                className="presentation-column",
+            ),
+        ],
+        className="presentation-box",
+    )
+
+
 def chart_base(fig: go.Figure, height: int = 410) -> go.Figure:
     fig.update_layout(
         template="plotly_white",
@@ -158,10 +180,15 @@ def app_styles() -> str:
     .panel-subtitle { color: #829AB1; font-size: 12px; margin-bottom: 8px; }
     .insight { border-left: 4px solid #16B8D4; padding: 17px 20px; line-height: 1.55; margin: 18px 0; }
     .insight strong { color: #102A43; }
+    .presentation-box { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; background: #EAF7FA; border: 1px solid #C7EAF0; border-left: 4px solid #16B8D4; border-radius: 14px; padding: 16px 20px; margin: 18px 0 24px; }
+    .presentation-column + .presentation-column { border-left: 1px solid #C7EAF0; padding-left: 18px; }
+    .presentation-label { color: #102A43; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .presentation-text { color: #486581; line-height: 1.55; margin: 6px 0 0; }
     .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 12px 0 16px; }
     .control-label { font-size: 12px; color: #627D98; font-weight: 700; }
     .footer { color: #829AB1; text-align: center; font-size: 12px; margin-top: 40px; }
     @media (max-width: 850px) { .kpi-grid, .two-col { grid-template-columns: 1fr 1fr; } .two-col { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) { .presentation-box { grid-template-columns: 1fr; gap: 14px; } .presentation-column + .presentation-column { border-left: 0; border-top: 1px solid #C7EAF0; padding-left: 0; padding-top: 14px; } }
     @media (max-width: 560px) { .panel .dash-graph { height: 350px !important; min-height: 350px; } }
     @media (max-width: 560px) { .kpi-grid { grid-template-columns: 1fr; } .brand-line { display: block; } .hero { padding: 28px 5vw; } .content { padding: 20px 4vw 45px; } }
     """
@@ -238,6 +265,10 @@ def q1_layout() -> html.Div:
                 "¿Qué marca ofrece el mejor desempeño?",
                 "Se analizaron 3.663 registros válidos (de 3.665 en la base original) en términos de emisiones contaminantes y cumplimiento de la potencia nominal 2,7 ± 0,22 kW.",
             ),
+            presentation_box(
+                "Se compararon las marcas de hornos usando sus emisiones de gases y el porcentaje que cumple el rango de potencia nominal.",
+                f"Recomendar la Marca {BEST_BRAND}, porque combina la menor emisión promedio con el mayor cumplimiento del límite ambiental. La potencia se usa como criterio complementario.",
+            ),
             html.Div(
                 [
                     card("Hornos analizados", fmt(len(Q1), 0), "Registros válidos de la base real", "blue"),
@@ -306,6 +337,10 @@ def q2_layout() -> html.Div:
                 "¿Cambian los tiempos entre equipos?",
                 "Se generaron 60 observaciones por equipo y escenario con semilla 2026. La comparación combina pruebas paramétricas y no paramétricas.",
             ),
+            presentation_box(
+                "Se compararon los tiempos de procesamiento de los equipos A y B bajo distribuciones normal y gamma, considerando sus medias y dispersión.",
+                "Aplicar Welch y Mann–Whitney con α = 0,05. Como ambos valores p superan ese nivel, no se rechaza la igualdad: no hay evidencia suficiente de que un equipo sea más rápido.",
+            ),
             html.Div(
                 [
                     card("Observaciones", "240", "4 grupos · 60 por grupo", "blue"),
@@ -366,6 +401,10 @@ def q3_layout() -> html.Div:
                 "Pregunta 3 · Aplicación en ingeniería de sistemas",
                 "¿Qué runtime ordena más rápido?",
                 "Experimento práctico con 100 mediciones reales por lenguaje al ordenar un arreglo de un millón de números.",
+            ),
+            presentation_box(
+                "Se midió 100 veces el tiempo necesario para ordenar el mismo volumen de datos en Python y Java, comparando promedios y variabilidad.",
+                f"Para esta implementación y este equipo, elegir Java cuando se priorice el tiempo de ejecución: tardó en promedio {python_mean / java_mean:.1f} veces menos. La conclusión no generaliza a todos los programas o hardware.",
             ),
             html.Div(
                 [
