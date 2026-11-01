@@ -315,7 +315,7 @@ def q1_layout() -> html.Div:
             ),
             html.Div(
                 [
-                    html.H3("Lectura para la exposición"),
+                    html.H3("Analisis Final"),
                     html.P(
                         f"La Marca {BEST_BRAND} presenta la menor media de emisiones ({best['ppm_medio']:.1f} ppm) "
                         f"y el mayor cumplimiento de emisiones ({best['emision_ok']:.1f}%). "
